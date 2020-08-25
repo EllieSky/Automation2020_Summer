@@ -14,6 +14,7 @@ class RequestsDemo(unittest.TestCase):
         file = open("result.html", "w")
         file.write(response.text)
         file.close()
+        #
 
 
 if __name__ == '__main__':
