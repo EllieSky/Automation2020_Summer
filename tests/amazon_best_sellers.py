@@ -17,9 +17,10 @@ class AmazonBestSellerExample(unittest.TestCase):
         browser = self.browser
         browser.find_element_by_id("twotabsearchtextbox").send_keys("headphones" + Keys.ENTER)
         # # OR
+        #
         # browser.find_element_by_id("twotabsearchtextbox").send_keys("headphones")
         # browser.find_element_by_name("site-search").submit()
-        # # OR
+        #  OR
         # browser.find_element_by_id("twotabsearchtextbox").send_keys("headphones")
         # browser.find_element_by_css_selector("input.nav-input[value='Go']").click()
 
