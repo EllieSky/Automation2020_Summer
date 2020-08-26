@@ -11,6 +11,7 @@ class Login(unittest.TestCase):
         self.browser = webdriver.Chrome(executable_path='/Users/ellie/Selenium/Automation2020_Summer/browsers/chromedriver')
         self.browser.get('http://hrm-online.portnov.com/')
         # new comment
+        # comment test
 
     def tearDown(self) -> None:
         # this closes the browser session, not just the window
