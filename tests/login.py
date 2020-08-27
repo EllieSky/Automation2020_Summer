@@ -12,6 +12,7 @@ class Login(unittest.TestCase):
         self.browser.get('http://hrm-online.portnov.com/')
         # new comment
         # comment test
+        # comment test
 
     def tearDown(self) -> None:
         # this closes the browser session, not just the window
