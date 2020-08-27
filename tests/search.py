@@ -9,7 +9,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 class Search(unittest.TestCase):
     def setUp(self) -> None:
-        self.browser = webdriver.Chrome(executable_path='/Users/ellie/Selenium/Automation2020_Summer/browsers/chromedriver')
+        self.browser = webdriver.Chrome("../browsers/chromedriver")
         self.browser.get('http://hrm-online.portnov.com/')
 
     def tearDown(self) -> None:
