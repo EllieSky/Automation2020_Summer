@@ -3,6 +3,7 @@ import requests
 
 
 class RequestsDemo(unittest.TestCase):
+    # made changes (by Carol)
     def test_get_google(self):
         user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36'
         header = {'user-agent': user_agent}
