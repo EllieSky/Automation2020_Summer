@@ -32,7 +32,5 @@ After every class (the next day):
     git checkout <your_branch_name>
     
     git rebase origin/master
-    
-    #TODO: need to add command for git merge...  try #2
 
 
