@@ -21,6 +21,7 @@ class CalculateSecondsTestCase(unittest.TestCase):
 
 
 
+
     # def test_non_zero_hours_and_minutes(self):
     #     minutes = 3
     #     hours = 1
@@ -55,7 +56,6 @@ class CalculateSecondsTestCase(unittest.TestCase):
     #     except TypeError as e:
     #         self.assertEqual(expected_message, str(e))
 
-
     def get_seconds(self, hours, minutes) -> Any:
         if minutes < 0:
             return "The provided input '{0}' for minutes is not valid, please enter a positive number".format(minutes)
@@ -64,8 +64,6 @@ class CalculateSecondsTestCase(unittest.TestCase):
 
         # hours * 60 * 60 + minutes * 60
         return (hours * 60 + minutes) * 60
-
-
 
 
 if __name__ == '__main__':
