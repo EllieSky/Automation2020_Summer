@@ -26,7 +26,7 @@ class AddNewEmployee(unittest.TestCase):
         browser.find_element_by_id("btnLogin").click()
 
         # 1) On the PIM tab click the ADD button.
-        explicit_wait.until(expected_conditions.presence_of_element_located([By.XPATH, "//input[@class='ac_input inputFormatHint']"]))
+        explicit_wait.until(expected_conditions.presence_of_element_located([By.XPATH, "//input[@id='empsearch_employee_name_empName'][@class='ac_input inputFormatHint']"]))
         browser.find_element_by_id("menu_pim_addEmployee").click()
 
         # 2) Enter First name
