@@ -3,6 +3,7 @@ import time
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
@@ -25,6 +26,7 @@ class AddNewEmployee(unittest.TestCase):
         browser.find_element_by_id("btnLogin").click()
 
         # 1) On the PIM tab click the ADD button.
+        explicit_wait.until(expected_conditions.presence_of_element_located([By.XPATH, "//input[@class='ac_input inputFormatHint']"]))
         browser.find_element_by_id("menu_pim_addEmployee").click()
 
         # 2) Enter First name
