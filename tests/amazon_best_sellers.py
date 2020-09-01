@@ -9,8 +9,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 class AmazonBestSellerExample(unittest.TestCase):
     def setUp(self) -> None:
-        self.browser = webdriver.Chrome(
-            executable_path='/Users/ellie/Selenium/Automation2020_Summer/browsers/chromedriver')
+        self.browser = webdriver.Chrome()
         self.browser.get('https://www.amazon.com/')
 
     def tearDown(self) -> None:

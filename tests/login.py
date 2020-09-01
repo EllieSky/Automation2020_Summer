@@ -1,6 +1,6 @@
 import time
 import unittest
-
+import webdriver_manager
 from selenium import webdriver
 from parameterized import parameterized
 import selenium
@@ -8,7 +8,7 @@ import selenium
 
 class Login(unittest.TestCase):
     def setUp(self) -> None:
-        self.browser = webdriver.Chrome(executable_path='/Users/ellie/Selenium/Automation2020_Summer/browsers/chromedriver')
+        self.browser = webdriver.Chrome()
         self.browser.get('http://hrm-online.portnov.com/')
         # new comment
 
