@@ -8,29 +8,42 @@ from selenium.webdriver.support.ui import *
 from selenium.webdriver.support import *
 from selenium.common.exceptions import *
 from selenium.webdriver.support.select import Select
+unittest.TestLoader.sortTestMethodsUsing = None
 
 driver = webdriver.Chrome(executable_path="/Users/Shelby/Downloads/chromedriver")
 
 
 class test_day6HW(unittest.TestCase):
 
-    def setUp(self) -> None:
+    def setUp(self):
         driver.get("http://hrm-online.portnov.com/symfony/web/index.php/auth/login")
         self.wait = WebDriverWait(driver, 10)
-        self.first_name = None
-        self.emp_id = None
-        self.usr_name = None
-        self.new_password = None
 
-    def tearDown(self) -> None:
+
+
+    def tearDown(self):
         driver.quit()
 
-    def login(self, username='admin', password='password'):
+
+
+    def test_1login(self, username="admin", password="password"):
         self.wait.until(expected_conditions.element_to_be_clickable((By.ID, "txtUsername")))
         driver.find_element_by_id("txtUsername").send_keys(username)
         driver.find_element_by_id("txtPassword").send_keys(password)
         driver.find_element_by_id("btnLogin").click()
 
+
+    def test_2click_first_middle_name(self):
+        self.wait.until(expected_conditions.url_to_be("http://hrm-online.portnov.com/symfony/web/index.php/pim/viewEmployeeList"))
+        driver.find_elements_by_xpath("//a[text()='First (& Middle) Name']").click()
+
+    def test_3verify_sort(self):
+        current_url = driver.current_url
+        self.wait.until(expected_conditions.url_to_be("http://hrm-online.portnov.com/symfony/web/index.php/pim/viewEmployeeList?sortField=firstMiddleName&sortOrder=ASC"))
+        self.assertEquals(current_url,"http://hrm-online.portnov.com/symfony/web/index.php/pim/viewEmployeeList?sortField=firstMiddleName&sortOrder=ASC")
+        name1 = driver.find_element_by_xpath("//a[text()='Admin'][1]").text
+        name2 = driver.find_element_by_xpath("//a[text()='Amber']").text
+        self.assertGreaterEqual(name2,name1)
 
 if __name__ == '__main__':
     unittest.main()
