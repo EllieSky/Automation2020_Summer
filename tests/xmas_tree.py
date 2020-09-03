@@ -11,13 +11,10 @@
 
 def print_christmas_tree(height):
     for k in range(height):   # range goes from zero up to (but not including) height value
-        print(" " * (height - 1 - k) + "*" *(1 + 2*k))
+        print(" " * (height - 1 - k) + "*" * (1 + 2 * k))
 
-    print(" " * (height-1) + "|")
+    print(" " * (height - 1) + "|")
 
      # OR
 
-    print("|".rjust(height, ' '))
-
-
-print_christmas_tree(12)
+    # print("|".rjust(height, ' '))

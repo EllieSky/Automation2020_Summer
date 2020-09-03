@@ -32,7 +32,6 @@ class AddNewEmployee(unittest.TestCase):
         # 2) Enter First name
         first_name = "max"
         first_name_input = browser.find_element_by_id("firstName")
-        explicit_wait.until(expected_conditions.visibility_of(first_name_input))
         first_name_input.send_keys(first_name)
         first_name_input_value = first_name_input.get_attribute("value")
 
@@ -48,12 +47,10 @@ class AddNewEmployee(unittest.TestCase):
         # 3) click the 'Create Login Details' checkbox.
         browser.find_element_by_id("chkLogin").click()
 
+        # 4) Wait for the 'User Name' field to appear
         user_name_input = browser.find_element_by_id("user_name")
-        password_input = browser.find_element_by_id("user_password")
-
-        # 4) Wait for the 'User Name' and 'Password' fields to appear
         explicit_wait.until(expected_conditions.visibility_of(user_name_input))
-        explicit_wait.until(expected_conditions.visibility_of(password_input))
+        password_input = browser.find_element_by_id("user_password")
 
         # 5) Fill in the 'User Name' field with a unique value
         user_name_input.send_keys(first_name_input_value + last_name_input_value + employee_id)

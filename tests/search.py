@@ -6,12 +6,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 class Search(unittest.TestCase):
     def setUp(self) -> None:
-        self.browser = webdriver.Chrome(executable_path='/Users/ellie/Selenium/Automation2020_Summer/browsers/chromedriver')
-        self.browser.get('http://hrm-online.portnov.com/')
+        self.browser = webdriver.Chrome(ChromeDriverManager().install())
+        self.browser.get("http://hrm-online.portnov.com/")
 
     def tearDown(self) -> None:
         self.browser.quit()
@@ -61,6 +62,7 @@ class Search(unittest.TestCase):
             actual_job_title = browser.find_element_by_xpath(f"//tbody/tr[{j}]/td[5]").text
             # actual_job_title = browser.find_element_by_xpath("//tbody/tr[{j}]/td[5]".format(j=j)).text
             self.assertEqual("QA Manager", actual_job_title)
+            print(actual_job_title)
 
 if __name__ == '__main__':
     unittest.main()

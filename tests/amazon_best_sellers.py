@@ -5,13 +5,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 class AmazonBestSellerExample(unittest.TestCase):
     def setUp(self) -> None:
-        self.browser = webdriver.Chrome(
-            executable_path='/Users/ellie/Selenium/Automation2020_Summer/browsers/chromedriver')
-        self.browser.get('https://www.amazon.com/')
+
+        self.browser = webdriver.Chrome(ChromeDriverManager().install())
+        self.browser.get("https://www.amazon.com/")
 
     def tearDown(self) -> None:
         self.browser.quit()
@@ -48,10 +49,6 @@ class AmazonBestSellerExample(unittest.TestCase):
             # browser.find_element_by_id("add-to-cart-button")
             print('Done')
 
-
-        pass
-
-
-
+        print()
 if __name__ == '__main__':
     unittest.main()
