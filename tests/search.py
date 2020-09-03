@@ -56,6 +56,9 @@ class Search(unittest.TestCase):
             actual_job_title = single_row.find_element_by_xpath(".//td[5]").text
             self.assertEqual("QA Manager", actual_job_title)
 
+
+
+
 # OR (another method of looping)
         for j in range(1, len(list_of_rows)+1):
             actual_job_title = browser.find_element_by_xpath(f"//tbody/tr[{j}]/td[5]").text
