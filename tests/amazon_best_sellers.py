@@ -17,9 +17,11 @@ class AmazonBestSellerExample(unittest.TestCase):
         self.browser.quit()
 
     def test_find_headphones(self):
+        search_keyword = 'tablet'
+
         browser = self.browser
         wait = WebDriverWait(browser, 5)
-        browser.find_element_by_id("twotabsearchtextbox").send_keys("headphones" + Keys.ENTER)
+        browser.find_element_by_id("twotabsearchtextbox").send_keys(search_keyword + Keys.ENTER)
         # # OR
         # browser.find_element_by_id("twotabsearchtextbox").send_keys("headphones")
         # browser.find_element_by_name("site-search").submit()
@@ -46,9 +48,13 @@ class AmazonBestSellerExample(unittest.TestCase):
 
             wait.until(expected_conditions.presence_of_element_located((By.ID, "add-to-cart-button"))).click()
             # browser.find_element_by_id("add-to-cart-button")
-            print('Done')
 
+            # a_list = browser.find_elements_by_id('a-popover-1')
+            # if a_list and a_list[0].is_displayed():
+            #     browser.find_element_by_css_selector('#a-popover-1 .a-button-close').click()
 
+            if browser.find_elements_by_id('a-popover-1') and browser.find_element_by_id('a-popover-1').is_displayed():
+                browser.find_element_by_css_selector('#a-popover-1 .a-button-close').click()
         pass
 
 

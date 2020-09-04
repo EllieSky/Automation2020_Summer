@@ -6,11 +6,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
+from tests import CHROME_DRIVER
+
 
 class NewUser(unittest.TestCase):
     def setUp(self) -> None:
-        self.browser = webdriver.Chrome(
-            executable_path='/Users/ellie/Selenium/Automation2020_Summer/browsers/chromedriver')
+        self.browser = webdriver.Chrome(executable_path=CHROME_DRIVER)
         self.browser.get('http://hrm-online.portnov.com/')
 
     def tearDown(self) -> None:
@@ -56,10 +57,11 @@ class NewUser(unittest.TestCase):
         # browser.find_element_by_link_text("Logout").click()
 
         # Login
-        browser.find_element_by_id("txtUsername").send_keys(f'ej{emp_id}')
-        browser.find_element_by_id("txtPassword").send_keys('password')
-
-        browser.find_element_by_id("btnLogin").click()
+        # browser.find_element_by_id("txtUsername").send_keys(f'ej{emp_id}')
+        # browser.find_element_by_id("txtPassword").send_keys('password')
+        #
+        # browser.find_element_by_id("btnLogin").click()
+        self.login(f'ej{emp_id}')
 
         actual_message = browser.find_element_by_id("welcome").text
         self.assertTrue("Welcome Emily", actual_message)
