@@ -1,11 +1,11 @@
 import unittest
 
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
+from pages.login import login
 from tests import CHROME_DRIVER
 
 
@@ -22,7 +22,7 @@ class NewUser(unittest.TestCase):
         wait = WebDriverWait(browser, 3)
 
         # Login
-        self.login()
+        login(self.browser)
         # self.login("ellie")
         # self.login("bob", "abc123")
         # self.login(password="abc123")
@@ -61,7 +61,7 @@ class NewUser(unittest.TestCase):
         # browser.find_element_by_id("txtPassword").send_keys('password')
         #
         # browser.find_element_by_id("btnLogin").click()
-        self.login(f'ej{emp_id}')
+        login(self.browser, f'ej{emp_id}')
 
         actual_message = browser.find_element_by_id("welcome").text
         self.assertTrue("Welcome Emily", actual_message)
@@ -86,15 +86,6 @@ class NewUser(unittest.TestCase):
 
         emp_id = self.browser.find_element_by_id("employeeId").get_attribute("value")
         return emp_id
-
-    def login(self, username='admin', password='password'):
-        browser = self.browser
-        browser.find_element_by_id("txtUsername").send_keys(username)
-        browser.find_element_by_id("txtPassword").send_keys(password)
-        browser.find_element_by_id("btnLogin").click()
-        WebDriverWait(browser, 3).until(expected_conditions.presence_of_element_located(
-            [By.CSS_SELECTOR, "#empsearch_employee_name_empName.inputFormatHint"]))
-
 
     def func_name(self, name, dob=None, **kwargs):
         example_dict = {
