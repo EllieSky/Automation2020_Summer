@@ -22,8 +22,8 @@ class EmployeeList(BasePage):
         emp_id = self.browser.find_element_by_id("employeeId").get_attribute("value")
         return emp_id
 
-    def click_login_details_button(self):
-        self.browser.find_element_by_id("chkLogin").click()
+    def login_details_button(self):
+        return self.browser.find_element_by_id("chkLogin")
 
     def password_field(self,password='password'):
         self.browser.find_element_by_id("user_password").send_keys(password)
@@ -36,6 +36,12 @@ class EmployeeList(BasePage):
         self.browser.find_element_by_id("btnSave").click()
         WebDriverWait(self.browser, 3).until(EC.url_changes(page_url))
 
+    def welcome_button(self):
+        return self.browser.find_element_by_id("welcome")
+
     def button_logout_click(self):
-        self.browser.find_element_by_id("welcome").click()
+        self.welcome_button().click()
         WebDriverWait(self.browser, 3).until(EC.visibility_of_element_located((By.LINK_TEXT, "Logout"))).click()
+
+    def add_button(self):
+        return self.browser.find_element_by_id("btnAdd")

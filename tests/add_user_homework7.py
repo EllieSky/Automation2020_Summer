@@ -32,12 +32,13 @@ class AddUser(unittest.TestCase):
         # login
 
         # Go To Add Employee Page
-        browser.find_element_by_id("btnAdd").click()
+        self.add_user.add_button().click()
+        #browser.find_element_by_id("btnAdd").click()
 
         emp_id = self.add_user.enter_employee_name(last="Jones", middle="Kim", first="Emily")
         # create employee credentials
         #browser.find_element_by_id("chkLogin").click()
-        self.add_user.click_login_details_button()
+        self.add_user.login_details_button().click()
         wait.until(expected_conditions.visibility_of_element_located((By.ID, "user_name"))).send_keys(f"EJ{emp_id}")
 
         #browser.find_element_by_id("user_password").send_keys('password')
@@ -63,8 +64,8 @@ class AddUser(unittest.TestCase):
         #wait.until(expected_conditions.visibility_of_element_located((By.LINK_TEXT, "Logout"))).click()
         # browser.find_element_by_id("btnLogin").click()
         self.login_page.login(username=f'ej{emp_id}', password='password')
-
-        actual_message = browser.find_element_by_id("welcome").text
+        actual_message = self.add_user.welcome_button().text
+        #actual_message = browser.find_element_by_id("welcome").text
         self.assertTrue("Welcome Emily", actual_message)
 
 
