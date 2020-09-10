@@ -38,17 +38,22 @@ class Homework6(unittest.TestCase):
         sort_button = browser.find_element_by_xpath("//a[contains(text(),'First (& Middle) Name')]")
         button_abc = sort_button.click()
         wait.until(expected_conditions.presence_of_element_located((By.CLASS_NAME, "ASC")))
+        #empsearch_employee_name_empName.inputFormatHint
         # result_button= browser.find_element_by_xpath("//a[@class='ASC']")
         # self.assertTrue(result_button.get_attribute("ASC"))
-        column_of_first_name = dict()
+        column_of_first_name = list()
         column_of_first_name = browser.find_elements_by_xpath("//.//td[3]")
-
+        previous_name = ""
         for single_name in column_of_first_name:
             # print(browser.find_element_by_xpath("//.//td[3]").text)
-            print(single_name.text)
+            #print(single_name.text)
+            list1= list(single_name)
+            print(len(column_of_first_name))
+            #self.assertLessEqual(previous_name, single_name)
+
 
         # button_desc = browser.find_element_by_xpath("//a[contains(text(),'First (& Middle) Name')]").click()
-        sleep(20)
+
 
     def test_sort_by_first_name_desc1(self):
         browser = self.browser
@@ -69,16 +74,19 @@ class Homework6(unittest.TestCase):
         # button_desc = action.double_click(on_element=sort_button)
         wait.until(expected_conditions.presence_of_element_located((By.CLASS_NAME, "DESC")))
         # actual_result = browser.find_element_by_xpath("//a[@class='DESC']")
-        column_of_first_name = dict()
+        column_of_first_name = list()
         column_of_first_name = browser.find_elements_by_xpath("//.//td[3]")
 
         for single_name in column_of_first_name:
+            list_fn= (single_name.text)
+            b = list_fn
+            print(b[0:5])
+
+            #list_adc = b[0]
+            #self.assertGreaterEqual(list_adc,b)
 
 
 
-            #print(browser.find_element_by_xpath("//.//td[3]").text)
-            #print(single_name.text)
-            print(column_of_first_name)
 # (For now do this only for the first page)
 # Note: it is possible to have 2 or more of the same name, so names won't always be <, sometimes they may be ==.
 # Hint: You will need to add a wait after step #3, to allow time for the sort to complete.

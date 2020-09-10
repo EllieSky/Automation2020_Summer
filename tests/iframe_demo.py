@@ -5,8 +5,7 @@ from selenium import webdriver
 
 class FrameDemo(unittest.TestCase):
     def setUp(self) -> None:
-        self.browser = webdriver.Chrome(
-            executable_path='/Users/ellie/Selenium/Automation2020_Summer/browsers/chromedriver')
+        self.browser = webdriver.Chrome()
         self.browser.get('https://skryabin.com/webdriver/html/sample.html')
 
     def tearDown(self) -> None:
