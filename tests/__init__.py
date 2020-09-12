@@ -12,4 +12,4 @@ PROJ_DIR = os.path.dirname(TEST_DIR)
 
 CHROME_DRIVER = PROJ_DIR + '/browsers/chromedriver' + file_ext
 
-BASE_URL = "http://hrm-online.portnov.com/"
+BASE_URL = "http://hrm-online.portnov.com"

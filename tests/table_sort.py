@@ -1,22 +1,10 @@
 import unittest
 
-from selenium import webdriver
-
+from fixtures.base import BaseFixture
 from pages.employee_information import EmployeeInformation
-from pages.login import LoginPage
-from tests import CHROME_DRIVER
 
-class TableSort(unittest.TestCase):
-    def setUp(self) -> None:
-        self.browser = webdriver.Chrome(executable_path=CHROME_DRIVER)
-        self.login_page = LoginPage(self.browser)
-        self.login_page.go_to_page()
-        # self.browser.get('http://hrm-online.portnov.com/')
-        # new comment
 
-    def tearDown(self) -> None:
-        # this closes the browser session, not just the window
-        self.browser.quit()  # some more changes
+class TableSort(BaseFixture):
 
     def test_sort_by_first_middle_name(self):
         self.login_page.login()

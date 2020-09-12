@@ -1,20 +1,14 @@
-import time
 import unittest
 
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
+from fixtures.base import BaseFixture
 
-class Search(unittest.TestCase):
-    def setUp(self) -> None:
-        self.browser = webdriver.Chrome(executable_path='/Users/ellie/Selenium/Automation2020_Summer/browsers/chromedriver')
-        self.browser.get('http://hrm-online.portnov.com/')
 
-    def tearDown(self) -> None:
-        self.browser.quit()
+class Search(BaseFixture):
 
     def test_search_by_job_title(self):
         browser = self.browser
