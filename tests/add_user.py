@@ -5,8 +5,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
-from pages.login import LoginPage
+from pages.employee_information import EmployeeInformation
 from tests import CHROME_DRIVER
+from pages.login import LoginPage
 
 
 class NewUser(unittest.TestCase):
@@ -14,7 +15,6 @@ class NewUser(unittest.TestCase):
         self.browser = webdriver.Chrome(executable_path=CHROME_DRIVER)
         self.browser.get('http://hrm-online.portnov.com/')
         self.login_page = LoginPage(self.browser)
-        self.login_page.go_to_page()
 
     def tearDown(self) -> None:
         self.browser.quit()
@@ -63,7 +63,7 @@ class NewUser(unittest.TestCase):
         # browser.find_element_by_id("txtPassword").send_keys('password')
         #
         # browser.find_element_by_id("btnLogin").click()
-        self.login_page.login(self.browser, f'ej{emp_id}')
+        self.login_page.login(f'ej{emp_id}')
 
         actual_message = browser.find_element_by_id("welcome").text
         self.assertTrue("Welcome Emily", actual_message)

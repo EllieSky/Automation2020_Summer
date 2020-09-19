@@ -15,8 +15,8 @@ class LoginPage(BasePage):
         browser.find_element_by_id("txtUsername").send_keys(username)
         browser.find_element_by_id("txtPassword").send_keys(password)
         browser.find_element_by_id("btnLogin").click()
-       # WebDriverWait(browser, 3).until(expected_conditions.presence_of_element_located(
-        #    [By.CSS_SELECTOR, "#empsearch_employee_name_empName.inputFormatHint"]))
+        WebDriverWait(browser, 3).until(expected_conditions.presence_of_element_located(
+            [By.CSS_SELECTOR, "#empsearch_employee_name_empName.inputFormatHint"]))
 
     def click_social_media_icon(self, icon_name):
         social_icon = f"//a[contains(@href, '{icon_name}')]"

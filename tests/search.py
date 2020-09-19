@@ -10,7 +10,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 class Search(unittest.TestCase):
     def setUp(self) -> None:
-        self.browser = webdriver.Chrome()
+        self.browser = webdriver.Chrome(executable_path='/Users/ellie/Selenium/Automation2020_Summer/browsers/chromedriver')
         self.browser.get('http://hrm-online.portnov.com/')
 
     def tearDown(self) -> None:
@@ -55,9 +55,6 @@ class Search(unittest.TestCase):
         for single_row in list_of_rows:
             actual_job_title = single_row.find_element_by_xpath(".//td[5]").text
             self.assertEqual("QA Manager", actual_job_title)
-
-
-
 
 # OR (another method of looping)
         for j in range(1, len(list_of_rows)+1):
