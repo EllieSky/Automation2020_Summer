@@ -16,9 +16,24 @@ class BaseFixture(unittest.TestCase):
         self.login_page.go_to_page()
 
     def tearDown(self) -> None:
-        test_name = self._testMethodName
-        result_dir = os.path.join(TEST_DIR,'test_screenshots')
-        if not os.path.exists(result_dir):
-            os.mkdir(result_dir)
-        self.browser.save_screenshot(os.path.join(result_dir, f"{test_name}.png"))
+
+        if self._outcome.errors[1][1] is not None:
+
+            test_name = self._testMethodName
+            result_dir = os.path.join(TEST_DIR,'test_results')
+            if not os.path.exists(result_dir):
+                os.mkdir(result_dir)
+
+            test_dir = os.path.join(result_dir,test_name)
+            if not os.path.exists(test_dir):
+                os.mkdir(test_dir)
+            self.browser.save_screenshot(os.path.join(test_dir, f"{test_name}.png"))
+
+            # file = open('page_source.html', 'w')
+            # file.write(self.browser.page_source)
+            # file.close()
+
+            with open(os.path.join(test_dir, f"{test_name}.html"), 'w') as file:
+                file.write(self.browser.page_source)
+
         self.browser.quit()  # some more changes
