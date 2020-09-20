@@ -1,10 +1,13 @@
+from abc import abstractmethod, ABC, abstractproperty
+
 from selenium.webdriver.support.wait import WebDriverWait
 
 from tests import BASE_URL
 
 
-class BasePage(object):
+class BasePage(ABC):
     @property
+    @abstractmethod
     def PAGE_URI(self):
         return ""
 
@@ -18,3 +21,7 @@ class BasePage(object):
 
     def go_to_page(self):
         self.browser.get(BASE_URL + "/symfony/web/index.php" + self.PAGE_URI)
+
+    @abstractmethod
+    def wait_for_page(self):
+        pass

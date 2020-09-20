@@ -9,6 +9,9 @@ class AddEmployeePage(BasePage):
     def PAGE_URI(self):
         return "/pim/addEmployee"
 
+    def wait_for_page(self):
+        self.wait.until(expected_conditions.presence_of_element_located((By.ID, "firstName")))
+
     def enter_first_name(self, first):
         self.wait.until(
             expected_conditions.presence_of_element_located((By.ID, "firstName"))).send_keys(first)
