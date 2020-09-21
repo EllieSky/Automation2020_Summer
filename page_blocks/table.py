@@ -17,11 +17,15 @@ class PageTable:
     def delete(self):
         self.wait.until(expected_conditions.presence_of_element_located((By.ID, "btnDelete"))).click()
 
-    def get_value_from_row(self, row_num, column_name):
+    def get_value_from_row(self, row_num=5, column_name=4):
+        name = self.browser.find_element_by_xpath(f"//tr[{row_num}]//td[{column_name}]").text()
+        return name.title
 
+
+        # //tr[1]//td[4]
         # get_value_from_row(3, "Last Name")
         # return the name
-        pass
+
 
     def sort_by_column_header(self, header_name, order="ASC"):
         self.browser.find_element_by_xpath(
