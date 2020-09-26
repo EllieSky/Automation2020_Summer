@@ -1,6 +1,8 @@
 import unittest
 import requests
 
+from api.client import HRM
+
 
 class RequestsDemo(unittest.TestCase):
     # made changes (by Carol)
@@ -14,6 +16,23 @@ class RequestsDemo(unittest.TestCase):
         file = open("result.html", "w")
         file.write(response.text)
         file.close()
+
+    def test_auth(self):
+        api = HRM()
+        api.authenticate()
+
+        # emp_list = api.get_all_employees()
+
+        api.remove_employee(3289)
+
+        # emp_list_after = api.get_all_employees()
+
+        # assertTrue(<employee number is no longer in the list)
+
+    # remove twice the same empNumber
+    # remove none existent
+
+
 
 
 if __name__ == '__main__':
