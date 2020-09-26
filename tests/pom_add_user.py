@@ -31,6 +31,8 @@ class NewUser(BaseFixture):
         emp_id = self.add_employee_page.enter_employee_name(last=last, middle=middle, first=first)
         self.add_employee_page.enter_employee_credentials(f"{initials}{emp_id}", 'password')
 
+
+
         self.login_page.logout()
         self.login_page.login(f'{initials}{emp_id}')
 

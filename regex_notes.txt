@@ -1,0 +1,54 @@
+.
+[]
+*      	[from 0 .. infinity]
++		[from 1 .. infinity]
+?		[from 0 to 1]
+{7}		[exactly 7]
+{2, 5}	[from 2 to 5 matched]
+
+
+
+a-z
+A-Z
+0-9
+
+
+
+queue
+automatic
+shelves
+beautiful
+
+.*[aeiou]{3}.*
+[0-9]{9}
+[0-9a-fA-F]+
+
+
+
+828349349
+
+
+see spot run
+I see a bird		.+ see .+
+I grew up and now I see
+
+^see		see$
+
+
+aaaaaaaaaaaaaaaaaaa
+cat
+pig
+
+fish
+crows
+
+
+
+
+.{3}
+a{3}
+.+
+
+
+
+   .*

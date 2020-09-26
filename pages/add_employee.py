@@ -52,3 +52,4 @@ class AddEmployeePage(BasePage):
         self.browser.find_element_by_id("btnSave").click()
 
         self.wait.until(expected_conditions.url_changes(page_url))
+        return self.browser.current_url.split('/')[-1]
