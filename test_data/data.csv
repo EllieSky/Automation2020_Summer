@@ -1,0 +1,7 @@
+test_name,input,expected_output
+remove_non_existing_employee,0000001,Credentials Required
+non_int_data_type,abcdef,Credentials Required
+negative_emp_number,-99999,Credentials Required
+empty_emp_number,,Delete records?
+space_emp_number, ,Credentials Required
+none_emp_number, None,Delete records?

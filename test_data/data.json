@@ -1,0 +1,6 @@
+[
+  {"test_name":"remove_non_existing_employee","input":"0000001","expected_output":"Credentials Required"},
+  {"test_name":"none_emp_number","input":"None","expected_output":"Delete records?"},
+  {"test_name":"empty_emp_number","input":"","expected_output":"Delete records?"},
+  {"test_name":"space_emp_number","input":" ","expected_output":"Credentials Required"}
+]

@@ -1,5 +1,6 @@
 import unittest
 
+from api.client import HRM
 from fixtures.base import BaseFixture
 from pages.add_employee import AddEmployeePage
 from pages.employee_information import EmployeeInformation, TableHeaders
@@ -11,6 +12,12 @@ class NewUser(BaseFixture):
         super().setUp()
         self.employee_info_page = EmployeeInformation(self.browser)
         self.add_employee_page = AddEmployeePage(self.browser)
+
+    def tearDown(self) -> None:
+        api = HRM()
+        api.authenticate()
+        api.remove_employee(self.emp_number)
+        super().tearDown()
 
     def test_create_user(self):
         f = Faker()
@@ -29,9 +36,7 @@ class NewUser(BaseFixture):
         self.employee_info_page.goto_add_employee_page()
 
         emp_id = self.add_employee_page.enter_employee_name(last=last, middle=middle, first=first)
-        self.add_employee_page.enter_employee_credentials(f"{initials}{emp_id}", 'password')
-
-
+        self.emp_number = self.add_employee_page.enter_employee_credentials(f"{initials}{emp_id}", 'password')
 
         self.login_page.logout()
         self.login_page.login(f'{initials}{emp_id}')
