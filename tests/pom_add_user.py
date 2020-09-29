@@ -5,12 +5,22 @@ from pages.add_employee import AddEmployeePage
 from pages.employee_information import EmployeeInformation, TableHeaders
 from faker import Faker
 
+from api.client import HRM
+
 
 class NewUser(BaseFixture):
     def setUp(self) -> None:
         super().setUp()
         self.employee_info_page = EmployeeInformation(self.browser)
         self.add_employee_page = AddEmployeePage(self.browser)
+
+    def tearDown(self) -> None:
+        self.login_page.logout()
+        self.login_page.login()
+
+        api = HRM()
+        emp_id = self.browser.current_url.split('/')[-1]
+        api.remove_employee(emp_id)
 
     def test_create_user(self):
         f = Faker()

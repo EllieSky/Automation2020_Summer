@@ -24,7 +24,8 @@ class HRM:
 
     def remove_employee(self, emp_number):
         resp = self.sess.get("http://hrm-online.portnov.com/symfony/web/index.php/pim/viewEmployeeList")
-        csrf_token = self.extract_token(resp.text, 'defaultList')
+        #csrf_token = self.extract_token(resp.text, 'defaultList')
+        csrf_token = self.extract_token(resp.text)
 
         data = f"defaultList%5B_csrf_token%5D={csrf_token}&chkSelectRow%5B%5D={emp_number}"
         self.sess.post(url='http://hrm-online.portnov.com/symfony/web/index.php/pim/deleteEmployees', headers=self.headers, data=data)
