@@ -6,8 +6,13 @@ import requests
 import csv
 from parameterized import parameterized
 
+from faker import Faker
+
 from api.client import HRM
+from api.employees import Employees
+from api.jobs import Jobs
 from tests import PROJ_DIR
+
 
 def get_data_from_json():
     data_file = os.path.join(PROJ_DIR, 'test_data', 'data.json')
@@ -52,7 +57,8 @@ class RequestsDemo(unittest.TestCase):
         api = HRM()
         api.authenticate()
 
-        emp_list = api.get_all_employees()
+        emp_list = api.employee.get_all_employees()
+        api.jobs.authenticate()
 
         # random_index = random.randrange(len(emp_list))
         ## OR
@@ -61,9 +67,9 @@ class RequestsDemo(unittest.TestCase):
             emp_list.remove(random_record)
             random_record = random.choice(emp_list)
 
-        result = api.remove_employee(random_record['id'])
+        result = api.employee.remove_employee(random_record['id'])
 
-        emp_list_after = api.get_all_employees()
+        emp_list_after = api.employee.get_all_employees()
 
         # print(f"Deleted employee named {random_record['name']}, number {random_record['id']}")
 
@@ -84,7 +90,7 @@ class RequestsDemo(unittest.TestCase):
         # 'message warning'
         if input.strip() == 'None' or input.strip() == 'null':
             input = None
-        resp = api.remove_employee(input)
+        resp = api.employee.remove_employee(input)
 
         self.assertIn(expected_output, resp.text)
 
@@ -92,7 +98,31 @@ class RequestsDemo(unittest.TestCase):
     # remove none existent
 
 
+    def test_create_emp(self):
+        self.data = Faker()
+        first = self.data.first_name()
+        last = self.data.last_name()
+        api = HRM()
+        api.authenticate()
+        resp = api.employee.add_employee(first, last)
+        emp_number = resp.url.split('/')[-1]
+        all_emp = api.employee.get_all_employees()
+        self.assertIn({"name": first + " " + last, "id": emp_number}, all_emp)
 
+
+    def test_client(self):
+        emp_client = Employees()
+        emp_client.authenticate()
+        emp_client.get_all_employees()
+
+        job_client = Jobs()
+        job_client.authenticate()
+        job_client.add_job_title()
+
+        client = HRM()
+        client.authenticate()
+        client.employee.add_employee("Bob", "Anderson")
+        client.jobs.remove_job_title()
 
 if __name__ == '__main__':
     unittest.main()
