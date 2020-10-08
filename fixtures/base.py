@@ -9,6 +9,10 @@ from tests import CHROME_DRIVER, TEST_DIR
 
 
 class BaseFixture(unittest.TestCase):
+    def __init__(self, methodName: str = ...):
+        super().__init__(methodName)
+        self._outcome = None
+
     def setUp(self) -> None:
         self.browser = webdriver.Chrome(executable_path=CHROME_DRIVER)
         self.wait = WebDriverWait(self.browser, 3)
