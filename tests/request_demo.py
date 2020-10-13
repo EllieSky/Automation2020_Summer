@@ -13,7 +13,6 @@ from api.employees import Employees
 from api.jobs import Jobs
 from tests import PROJ_DIR
 
-
 def get_data_from_json():
     data_file = os.path.join(PROJ_DIR, 'test_data', 'data.json')
     with open(data_file, newline='') as file:
@@ -111,12 +110,10 @@ class RequestsDemo(unittest.TestCase):
 
 
     def test_client(self):
-        # can work with just employee api
         emp_client = Employees()
         emp_client.authenticate()
         emp_client.get_all_employees()
 
-        # or with just job api
         job_client = Jobs()
         job_client.authenticate()
         job_client.add_job_title()
