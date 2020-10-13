@@ -2,6 +2,7 @@ from abc import abstractmethod, ABC, abstractproperty
 
 from selenium.webdriver.support.wait import WebDriverWait
 
+from menus.main_menu import MainMenu
 from tests import BASE_URL
 
 
@@ -15,6 +16,7 @@ class BasePage(ABC):
         self.browser = browser
         self.wait = WebDriverWait(browser, 3)
         self.long_wait = WebDriverWait(browser, 15)
+        self.main_menu = MainMenu(browser)
 
     def get_title(self) -> str:
         return self.browser.find_element_by_css_selector(".head h1").text

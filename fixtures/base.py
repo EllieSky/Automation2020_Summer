@@ -4,6 +4,7 @@ import os
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 
+from menus.user_menu import UserMenu
 from pages.login import LoginPage
 from tests import CHROME_DRIVER, TEST_DIR
 
@@ -14,6 +15,7 @@ class BaseFixture(unittest.TestCase):
         self.wait = WebDriverWait(self.browser, 3)
         self.login_page = LoginPage(self.browser)
         self.login_page.go_to_page()
+        self.user_menu = UserMenu(self.browser)
 
     def tearDown(self) -> None:
 

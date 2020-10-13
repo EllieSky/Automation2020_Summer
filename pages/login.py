@@ -2,8 +2,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 
 from pages.base import BasePage
-from pages.employee_information import EmployeeInformation
-from tests import BASE_URL, URL_SLUG
 
 
 class LoginPage(BasePage):
@@ -32,14 +30,6 @@ class LoginPage(BasePage):
 
     def get_title(self) -> str:
         return self.browser.find_element_by_id("logInPanelHeading").text
-
-    def logout(self):
-        self.browser.find_element_by_id("welcome").click()
-        self.wait.until(expected_conditions.visibility_of_element_located((By.LINK_TEXT, "Logout"))).click()
-
-    def get_welcome_message(self):
-        return self.wait.until(expected_conditions.visibility_of_element_located((By.ID, "welcome"))).text
-        # return self.wait.until(expected_conditions.presence_of_element_located((By.ID, "welcome"))).text
 
     def wait_for_page(self):
         self.wait.until(expected_conditions.presence_of_element_located((By.ID, "frmLogin")))
